@@ -1,0 +1,6 @@
+1- Serializare
+
+1 class GeneralOperations 2 meth publice init(){//deserializare} //toate operatiunile folosesc init.
+                                         close(){//serializare}
+
+      In FileUtil 2 meth serialize(){} si deserialize(){}
