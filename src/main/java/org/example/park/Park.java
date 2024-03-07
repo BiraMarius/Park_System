@@ -23,7 +23,6 @@ public class Park extends ParkOperations {
 
     public void enter(Car car){
         super.enterIntoParking(cars, reports, car);
-        test(car);
     }
 
     public void pay(String registrationNumber, String payment){
@@ -46,31 +45,7 @@ public class Park extends ParkOperations {
         printReport(searchReportByDate(reports,String.valueOf(timeFormatter(LocalDateTime.now()))));
     }
 
-    public void test(Car car){
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("C:\\Users\\Marius\\Desktop\\Homework\\src\\Database",true));
-            out.writeUTF("\n");
-            out.writeObject(car);
-            out.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    /*
-    public void getdb(){
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("C:\\Users\\Marius\\Desktop\\Homework\\src\\Database",true));
-            ObjectInputStream in = new ObjectInputStream();
-            out.writeUTF("\n");
-            out.writeObject(car);
-            out.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-     */
 }

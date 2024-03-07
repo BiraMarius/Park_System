@@ -31,7 +31,6 @@ public class Main {
             String option = sc.nextLine();
             int intoption = Integer.valueOf(option);
             switch(intoption){
-
                 case 1: //Adding car to the parking
                     logger.info("Please enter car registration number: ");
                     carRN = sc.nextLine();
