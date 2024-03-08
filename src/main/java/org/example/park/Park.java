@@ -18,8 +18,8 @@ import static org.example.park.report.ReportOperations.*;
 
 
 public class Park extends ParkOperations {
-    private List<Car> cars = new ArrayList<>();
-    private List<Report> reports = new LinkedList<>();
+    private static List<Car> cars = new ArrayList<>();
+    private static List<Report> reports = new LinkedList<>();
 
     public void enter(Car car){
         super.enterIntoParking(cars, reports, car);
@@ -29,11 +29,11 @@ public class Park extends ParkOperations {
         super.paymentWithRegistrationNo(cars,reports,registrationNumber, payment);
     }
 
-    public List<Car> getCars() {
+    public static List<Car> getCars() {
         return cars;
     }
 
-    public List<Report> getReports() {
+    public static List<Report> getReports() {
         return reports;
     }
 

@@ -1,6 +1,9 @@
 package org.example.park.report;
 
+import org.example.park.vehicle.Car;
+
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -30,22 +33,20 @@ public class ReportOperations implements IReportOperations {
         return searchReportByDate(reports, timeFormatter(yesterdayDateTime));
     }
 
-    public static void saveInDataBase(Report report, String date){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("GeneratedReports.txt", true))) {
+    public static void saveInDataBase(Report report){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("reportDatabase.txt", true))) {
             writer.write("\n");
             System.out.println( "---------------------------------------\n"+
                                 "              REPORT               \n"+
                                 "Date of the report: "+report.getDate()+"\n"+
                                 "Cars that entered: "+report.getCarsIn()+"\n"+
                                 "Cars that leaved: "+report.getCarsOut()+"\n"+
-                                "Cars left: "+report.getCarsLeft()+"\n"+
+                                "Cars left: "+carsLeft(report)+"\n"+
                                 "Income: "+report.getIncome()+"\n"+
                                 "---------------------------------------");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public static void addCarsToCt(Report report){
