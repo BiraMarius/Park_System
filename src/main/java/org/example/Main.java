@@ -18,7 +18,7 @@ public class Main {
     //private static Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
         Park baneasaP = new Park();
-        FileUtil.deserializare(Park.getCars());
+        //FileUtil.deserializare(Park.getCars());
         ReportUtil.initDeserialization(Park.getReports(), "recycledReport.txt");
         saveInDataBase(searchReportYesterday(Park.getReports()));
         Scanner sc = new Scanner(System.in);
@@ -67,14 +67,14 @@ public class Main {
                     break;
 
                 case 6: // Save current state of parking
-                    FileUtil.serializare(Park.getCars());
+                    //FileUtil.serializare(Park.getCars());
 
                 case 7: // Get state of parking from file
-                    FileUtil.deserializare(Park.getCars());
+                    //FileUtil.deserializare(Park.getCars());
 
                 case 8: // Closing app option
                     System.out.println("Shuting down.");
-                    FileUtil.serializare(Park.getCars());
+                    //FileUtil.serializare(Park.getCars());
                     ReportUtil.closeSerialization(Park.getReports(), "recycledReport.txt");
                     exit=true;
                     break;

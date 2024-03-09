@@ -47,7 +47,7 @@ public class ParkOperations implements IParkOperations {
     }
 
     public void saveCarsList(List<Car> cars) throws IOException {
-        FileUtil.writeToFile(cars);
+        //FileUtil.writeToFile(cars);
     }
 
 

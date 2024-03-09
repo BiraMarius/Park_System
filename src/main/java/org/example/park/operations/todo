@@ -1,0 +1,54 @@
+generare raport doar cu masini cu nr straine       stream java 8 filter
+
+filtrarea masinilor care au stat minim 3 ore in parcare
+
+suma masini suma bani
+
+adaugarea unui nou camp de nationalitate in Car
+atunci cand parcurg lista cu stream adaug in campul respectiv tara de provenienta operatiue map
+
+
+
+chat>
+W3 SmartSolutions
+13:38
+https://crunchify.com/how-to-serialize-deserialize-list-of-objects-in-java-java-serialization-example/
+W3 SmartSolutions
+13:55
+try (FileOutputStream fos = new FileOutputStream("employeeData");
+    ObjectOutputStream oos = new ObjectOutputStream(fos);) {
+W3 SmartSolutions
+13:56
+try (FileInputStream fis = new FileInputStream("listData");
+    ObjectInputStream ois = new ObjectInputStream(fis);) {
+W3 SmartSolutions
+14:10
+https://www.appsdeveloperblog.com/serialize-and-deserialize-an-arraylist-in-java/
+W3 SmartSolutions
+14:50
+https://www.tutorialspoint.com/java/java-lambda-expressions.htm
+W3 SmartSolutions
+14:54
+https://www.tutorialspoint.com/java8/java8_streams.htm
+W3 SmartSolutions
+14:55
+Calculate the sum of all elements in a list of integers.
+Find the maximum element in a list of doubles.
+Filter out all even numbers from a list of integers.
+Count the number of occurrences of a specific element in a list of strings.
+Convert a list of strings to uppercase.
+Find the average length of strings in a list of strings.
+Remove all duplicate elements from a list of integers.
+Sort a list of strings in alphabetical order.
+Check if all elements in a list of integers are positive.
+Merge two l
+W3 SmartSolutions
+15:21
+Generate 10 simple exercises with java stream
+
+
+https://www.tutorialspoint.com/java8/java8_streams.htm
+https://www.tutorialspoint.com/java/java-lambda-expressions.htm
+https://www.appsdeveloperblog.com/serialize-and-deserialize-an-arraylist-in-java/
+https://crunchify.com/how-to-serialize-deserialize-list-of-objects-in-java-java-serialization-example/
+

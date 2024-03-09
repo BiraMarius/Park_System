@@ -3,54 +3,43 @@ package org.example.park.operations;
 import org.example.park.vehicle.Car;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class GeneralOperations {
-//    public static List<Car> initDeserialization(List<Car> cars, String fileName){
-//        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
-//            cars = (List<Car>) in.readObject();
-//            System.out.println("Objects read from file successfully.");
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return cars;
-//    }
+import static org.example.park.operations.util.Constants.FILE_NAME;
+import static org.example.park.operations.util.Constants.ROOT_PATH;
 
-    public static List<Car> initDeserialization(List<Car> cars, String fileName) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
-            // Check if the file is not empty before attempting to read
-            if (in.available() > 0) {
-                cars = (List<Car>) in.readObject();
-                System.out.println("Objects read from file successfully.");
-            } else {
-                System.out.println("File is empty. No objects to deserialize.");
-            }
-        } catch (FileNotFoundException e) {
+
+public class GeneralOperations {
+    public static void serializare(List <Car> cars){
+        closeSerialization(cars, ROOT_PATH + "\\" + FILE_NAME);
+    }
+
+    public static List<Car> deserializare(){
+        return initDeserialization( ROOT_PATH + "\\" + FILE_NAME);
+        //cleanFile();
+    }
+
+
+    public static List<Car> initDeserialization( String fileName) {
+        try(FileInputStream inputStream = new FileInputStream(fileName);
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream );) {
+             return  (ArrayList) objectInputStream.readObject();
+        }catch (FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
             // Handle this exception as needed, e.g., log or inform the user
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return cars;
-    }
-
-    public static List<Car> initDeserialization(List<Car> cars, String fileName) {
-        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("filename.txt"));
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        return cars;
+//        finally {
+//            objectInputStream.close();
+//            inputStream .close();
+//        }
+        return null;
     }
 
 
-    public static void closeSerialization(List<Car> cars, String filename){
+    private static void closeSerialization(List<Car> cars, String filename){
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream((filename)))){
             out.writeObject(cars);
             System.out.println("Objects written to file successfully.");
@@ -58,4 +47,15 @@ public class GeneralOperations {
             e.printStackTrace();
         }
     }
+
+//    private static void cleanFile(){
+//        try {
+//            FileWriter fr = getFileWriter();
+//            fr.write("");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
 }
