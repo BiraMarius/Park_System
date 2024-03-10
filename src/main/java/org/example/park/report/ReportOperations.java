@@ -85,4 +85,6 @@ public class ReportOperations implements IReportOperations {
                            "---------------------------------------");
     }
 
+    //Adauga serializarea noua aici
+
 }
