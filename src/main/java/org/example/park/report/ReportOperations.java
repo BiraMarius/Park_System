@@ -1,5 +1,6 @@
 package org.example.park.report;
 
+import org.example.park.Park;
 import org.example.park.vehicle.Car;
 
 import java.io.*;
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.example.park.operations.util.Constants.FILE_NAME;
@@ -34,55 +36,20 @@ public class ReportOperations implements IReportOperations {
         return searchReportByDate(reports, timeFormatter(yesterdayDateTime));
     }
 
-    public static void saveInDataBase(Report report){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("reportDatabase.txt", true))) {
+    public static void saveInDataBase(Report report, List<Car> cars){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("generatedCompleteReports.txt", true))) {
             writer.write("\n");
-            System.out.println( "---------------------------------------\n"+
+            writer.write(   "---------------------------------------\n"+
                                 "              REPORT               \n"+
                                 "Date of the report: "+report.getDate()+"\n"+
                                 "Cars that entered: "+report.getCarsIn()+"\n"+
                                 "Cars that leaved: "+report.getCarsOut()+"\n"+
-                                "Cars left: "+carsLeft(report)+"\n"+
+                                "Cars left: "+cars.size()+"\n"+
                                 "Income: "+report.getIncome()+"\n"+
                                 "---------------------------------------");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        public static void serializare(List <Car> cars){
-//            closeSerialization(cars, ROOT_PATH + "\\" + FILE_NAME);
-//        }
-//
-//        public static List<Car> deserializare(){
-//            return initDeserialization( ROOT_PATH + "\\" + FILE_NAME);
-//            //cleanFile();
-//        }
-//
-//
-//        public static List<Car> initDeserialization( String fileName) {
-//            try(FileInputStream inputStream = new FileInputStream(fileName);
-//                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream );) {
-//                return  (ArrayList) objectInputStream.readObject();
-//            }catch (FileNotFoundException e) {
-//                System.out.println("File not found: " + fileName);
-//                // Handle this exception as needed, e.g., log or inform the user
-//            } catch (IOException | ClassNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
-//
-//
-//        private static void closeSerialization(List<Car> cars, String filename){
-//            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream((filename)))){
-//                out.writeObject(cars);
-//                System.out.println("Objects written to file successfully.");
-//            } catch (IOException e){
-//                e.printStackTrace();
-//            }
-//        }
-
-
     }
 
     public static void addCarsToCt(Report report){
@@ -121,6 +88,10 @@ public class ReportOperations implements IReportOperations {
                            "---------------------------------------");
     }
 
-    //Adauga serializarea noua aici
+    public static void completeReport(LinkedList<Report> reports){
+        if(reports.getLast().getDate() != timeFormatter(LocalDateTime.now())){
+            saveInDataBase(searchReportYesterday(Park.getReports()),Park.getCars());
+        }
+    }
 
 }

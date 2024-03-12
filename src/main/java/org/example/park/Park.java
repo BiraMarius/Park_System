@@ -19,7 +19,7 @@ import static org.example.park.report.ReportOperations.*;
 
 public class Park extends ParkOperations {
     private static List<Car> cars = new ArrayList<>();
-    private static List<Report> reports = new LinkedList<>();
+    private static LinkedList<Report> reports = new LinkedList<>();
 
     public void enter(Car car){
         super.enterIntoParking(cars, reports, car);
@@ -33,7 +33,7 @@ public class Park extends ParkOperations {
         return cars;
     }
 
-    public static List<Report> getReports() {
+    public static LinkedList<Report> getReports() {
         return reports;
     }
 
@@ -45,7 +45,11 @@ public class Park extends ParkOperations {
         printReport(searchReportByDate(reports,String.valueOf(timeFormatter(LocalDateTime.now()))));
     }
 
+    public static void setCars(List<Car> cars) {
+        Park.cars = cars;
+    }
 
-
-
+    public static void setReports(LinkedList<Report> reports) {
+        Park.reports = reports;
+    }
 }

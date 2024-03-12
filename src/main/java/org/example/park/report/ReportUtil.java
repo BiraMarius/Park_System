@@ -1,28 +1,55 @@
 package org.example.park.report;
 
-import org.example.park.vehicle.Car;
-
 import java.io.*;
+import java.util.LinkedList;
 import java.util.List;
 
+import static org.example.park.operations.util.Constants.*;
+
 public class ReportUtil {
-    public static List<Report> initDeserialization(List<Report> reports, String fileName){
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
-            reports = (List<Report>) in.readObject();
-            System.out.println("Reports read from file successfully.");
+    public static void serializare(LinkedList<Report> reports) {
+        closeSerialization(reports, ROOT_PATH + "\\" + FILE_NAME_Reports);
+    }
+
+    public static LinkedList<Report> deserializare() {
+        return initDeserialization(ROOT_PATH + "\\" + FILE_NAME_Reports);
+    }
+
+    public static LinkedList initDeserialization(String fileName) {
+        try (FileInputStream inputStream = new FileInputStream(fileName);
+             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);) {
+            return (LinkedList) objectInputStream.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + fileName);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return reports;
+        return null;
     }
 
-    public static void closeSerialization(List<Report> reports, String filename){
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream((filename)))){
+
+    private static void closeSerialization(LinkedList<Report> reports, String filename) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream((filename)))) {
             out.writeObject(reports);
-            System.out.println("Reports written to file successfully.");
-        } catch (IOException e){
+            System.out.println("Objects written to file successfully.");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public static void cleanFile(String filename){
+        try {
+            FileWriter fr = getFileWriter(filename);
+            fr.write("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static FileWriter getFileWriter(String filename) throws IOException {
+        return new FileWriter(ROOT_PATH+"\\"+filename);
+    }
+
+
 
 }

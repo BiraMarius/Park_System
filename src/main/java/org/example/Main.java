@@ -3,13 +3,17 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.park.Park;
+import org.example.park.operations.GeneralOperations;
 import org.example.park.operations.util.FileUtil;
 import org.example.park.report.Report;
+import org.example.park.report.ReportOperations;
 import org.example.park.report.ReportUtil;
 import org.example.park.vehicle.Car;
 
 import java.util.Scanner;
 
+import static org.example.park.operations.util.Constants.FILE_NAME;
+import static org.example.park.operations.util.Constants.FILE_NAME_Reports;
 import static org.example.park.report.ReportOperations.saveInDataBase;
 import static org.example.park.report.ReportOperations.searchReportYesterday;
 
@@ -18,9 +22,13 @@ public class Main {
     //private static Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
         Park baneasaP = new Park();
-        //FileUtil.deserializare(Park.getCars());
-        ReportUtil.initDeserialization(Park.getReports(), "recycledReport.txt");
-        saveInDataBase(searchReportYesterday(Park.getReports()));
+        Park.setReports(ReportUtil.deserializare());
+        Park.setCars(GeneralOperations.deserializare());
+        ReportUtil.cleanFile(FILE_NAME_Reports);
+        ReportUtil.cleanFile(FILE_NAME);
+        ReportOperations.completeReport(Park.getReports());
+
+
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
         String carRN;
@@ -67,15 +75,16 @@ public class Main {
                     break;
 
                 case 6: // Save current state of parking
-                    //FileUtil.serializare(Park.getCars());
+                    ReportUtil.cleanFile(FILE_NAME);
+                    GeneralOperations.serializare(Park.getCars());
 
                 case 7: // Get state of parking from file
-                    //FileUtil.deserializare(Park.getCars());
+                    Park.setCars(GeneralOperations.deserializare());
 
                 case 8: // Closing app option
                     System.out.println("Shuting down.");
-                    //FileUtil.serializare(Park.getCars());
-                    ReportUtil.closeSerialization(Park.getReports(), "recycledReport.txt");
+                    GeneralOperations.serializare(Park.getCars());
+                    ReportUtil.serializare(Park.getReports());
                     exit=true;
                     break;
 

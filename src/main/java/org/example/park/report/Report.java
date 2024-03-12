@@ -1,6 +1,8 @@
 package org.example.park.report;
 
-public class Report {
+import java.io.Serializable;
+
+public class Report implements Serializable {
     private static int id;
     private String date;
     private int carsIn;

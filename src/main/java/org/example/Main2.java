@@ -3,10 +3,13 @@ package org.example;
 import org.example.park.Park;
 import org.example.park.operations.GeneralOperations;
 import org.example.park.operations.util.FileUtil;
+import org.example.park.report.Report;
+import org.example.park.report.ReportUtil;
 import org.example.park.vehicle.Car;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +29,6 @@ public class Main2 {
 //        }
 
 
-
 //        Calculate the sum of all elements in a list of integers.
 //                Find the maximum element in a list of doubles.
 //        Filter out all even numbers from a list of integers.
@@ -38,23 +40,23 @@ public class Main2 {
 //                Check if all elements in a list of integers are positive.
 //                Merge two l
 
-        List<Integer> newlist = new ArrayList();
-        newlist.add(1);
-        newlist.add(2);
-        newlist.add(3);
-
-
-        newlist.stream().map(nr -> nr.intValue() )
-                .mapToInt(Integer::intValue)
-                        .sum();
-
-        newlist.stream().mapToInt(nr -> nr.intValue()).sum();
-        int suma = newlist.stream().mapToInt(Integer::intValue).sum();
-        System.out.println("Suma>" +suma);
-
-        newlist.stream()
-                .filter(nr -> nr%2==0)
-                .collect(Collectors.toList());
+//        List<Integer> newlist = new ArrayList();
+//        newlist.add(1);
+//        newlist.add(2);
+//        newlist.add(3);
+//
+//
+//        newlist.stream().map(nr -> nr.intValue() )
+//                .mapToInt(Integer::intValue)
+//                        .sum();
+//
+//        newlist.stream().mapToInt(nr -> nr.intValue()).sum();
+//        int suma = newlist.stream().mapToInt(Integer::intValue).sum();
+//        System.out.println("Suma>" +suma);
+//
+//        newlist.stream()
+//                .filter(nr -> nr%2==0)
+//                .collect(Collectors.toList());
     }
 }
 
