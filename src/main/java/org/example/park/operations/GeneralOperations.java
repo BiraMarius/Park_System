@@ -48,14 +48,7 @@ public class GeneralOperations {
         }
     }
 
-//    private static void cleanFile(){
-//        try {
-//            FileWriter fr = getFileWriter();
-//            fr.write("");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
 
 }

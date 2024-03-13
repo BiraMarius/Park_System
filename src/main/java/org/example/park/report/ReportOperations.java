@@ -94,4 +94,27 @@ public class ReportOperations implements IReportOperations {
         }
     }
 
+    public static Report reportFCars(List<Car> cars){
+
+    }
+
+    private static List<Car> carsCountry(){
+        List<Car> carsCList = new ArrayList();
+
+    }
+
+    public static void FCarsNow(List<Car> cars, Car car){
+        List<Car> fCarsList = (List<Car>) cars.stream().filter(fcars -> car.getCountry().equalsIgnoreCase("romania"));
+        for(Car car2 : fCarsList){
+            System.out.println("nr de inmatriculare");
+        }
+    }
+
+    public static void addCountry(List<Car> cars, String string, String country){
+        cars.stream().filter(c -> c.getRegistationNo().startsWith(string)).map(c -> { c.setCountry(country);return c.getRegistationNo() + " Is from: "+c.getCountry();});
+    }
+
+
+
+
 }

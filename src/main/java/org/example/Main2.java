@@ -57,6 +57,12 @@ public class Main2 {
 //        newlist.stream()
 //                .filter(nr -> nr%2==0)
 //                .collect(Collectors.toList());
+
+        List<Car> cars = new ArrayList();
+        cars.add(new Car("b801yan"));
+        cars.add(new Car("b802yaz"));
+        cars.add(new Car("b803yah"));
+
     }
 }
 

@@ -8,9 +8,11 @@ public abstract class Vehiclee implements Serializable {
     private static int lastid;
     private int id;
     private String registationNo;
+    private String country;
     private LocalDateTime parkingTime;
     private LocalDateTime unParkingTime;
     private String payment;
+
 
     public Vehiclee(String registationNo) {
         this.registationNo = registationNo;
@@ -76,5 +78,13 @@ public abstract class Vehiclee implements Serializable {
 
     public void setPayment(String payment) {
         this.payment = payment;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
