@@ -10,6 +10,8 @@ import org.example.park.report.ReportUtil;
 import org.example.park.vehicle.Car;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +19,8 @@ import java.util.stream.Collectors;
 
 import static org.example.park.operations.util.Constants.FILE_NAME;
 import static org.example.park.operations.util.Constants.FILE_NAME_Reports;
-import static org.example.park.report.ReportOperations.addCountry;
+import static org.example.park.operations.util.ParkOperationsUtil.cars3h;
+import static org.example.park.report.ReportOperations.*;
 
 public class Main2 {
     public static void main(String[] args) throws IOException {
@@ -64,7 +67,7 @@ public class Main2 {
 //                .filter(nr -> nr%2==0)
 //                .collect(Collectors.toList());
 
-        List<Car> cars = new ArrayList();
+        ArrayList<Car> cars = new ArrayList();
         LinkedList<Report> reports = new LinkedList();
 //
 //        //cars = GeneralOperations.deserializare();
@@ -73,6 +76,9 @@ public class Main2 {
         cars.add(new Car("b801yan"));
         cars.add(new Car("b802yaz"));
         cars.add(new Car("b803yah"));
+        cars.add(new Car("s801yan"));
+        cars.add(new Car("s802yaz"));
+
 //
 //        ReportUtil.cleanFile(FILE_NAME_Reports);
 //        ReportUtil.cleanFile(FILE_NAME);
@@ -81,13 +87,20 @@ public class Main2 {
 //
 //        GeneralOperations.serializare(Park.getCars());
 //        ReportUtil.serializare(Park.getReports());
-        ReportOperations.addCountry(cars,"b", String.valueOf(Constants.Country.ROMANIA));
+        ReportOperations.addCountry(cars,"b", String.valueOf(Constants.Country.FRANCE));
+        ReportOperations.addCountry(cars,"s", String.valueOf(Constants.Country.SWITZERLAND));
         for(Car car : cars){
             System.out.println(car.getRegistationNo() + " is from: "+ car.getCountry());
         }
-//        Car car = new Car("B800YAM");
-//        car.setCountry(Constants.Country.ROMANIA.toString());
-//        System.out.println(car.getRegistationNo() + " din tara "+ car.getCountry());
+        reportFCTemplate(carsCountry(cars));
+
+        LocalDateTime now= LocalDateTime.now();
+        cars.add(new Car("s801yan", now.minusHours(4)));
+        cars.add(new Car("s802yaz", now.minusHours(4)));
+        List<Car> carsParkedMoreThan = cars3h(cars, Duration.ofHours(3));
+        for (Car car : carsParkedMoreThan) {
+            System.out.println("Car: " + car.getRegistationNo() + ", Arrival Time: " + car.getParkingTime());
+        }
 
 
     }

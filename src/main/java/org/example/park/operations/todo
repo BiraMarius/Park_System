@@ -1,11 +1,9 @@
-generare raport doar cu masini cu nr straine       stream java 8 filter
+!FUNCTIONAL SI GATA x generare raport doar cu masini cu nr straine       stream java 8 filter
 
 filtrarea masinilor care au stat minim 3 ore in parcare
 
-suma masini suma bani
-
-xxxxx adaugarea unui nou camp de nationalitate in Car
-atunci cand parcurg lista cu stream adaug in campul respectiv tara de provenienta operatiue map
+!FUNCTIONAL SI GATA x adaugarea unui nou camp de nationalitate in Car
+!FUNCTIONAL SI GATA x atunci cand parcurg lista cu stream adaug in campul respectiv tara de provenienta operatiue map
 
 
 

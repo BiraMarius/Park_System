@@ -4,7 +4,9 @@ import org.example.park.vehicle.Car;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class ParkOperationsUtil extends Object{
@@ -91,5 +93,11 @@ public class ParkOperationsUtil extends Object{
     }
 
 
+    public static List<Car> cars3h(ArrayList<Car> cars, Duration duration){
+        LocalDateTime timeNow = LocalDateTime.now();
+        return cars.stream()
+                .filter(car -> Duration.between(car.getParkingTime(), timeNow).compareTo(duration) >= 0)
+                .collect(Collectors.toList());
+    }
 
 }

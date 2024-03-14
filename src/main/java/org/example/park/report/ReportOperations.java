@@ -99,7 +99,7 @@ public class ReportOperations{
 
     }
 
-    private static void reportFCTemplate(Map<String, Long> countryCT){
+    public static void reportFCTemplate(Map<String, Long> countryCT){
         List<String> countryCarCT = countryCT.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue() )
                         .collect(Collectors.toList());
@@ -112,7 +112,7 @@ public class ReportOperations{
 
 
 
-    private static Map<String, Long> carsCountry(ArrayList<Car> cars){
+    public static Map<String, Long> carsCountry(ArrayList<Car> cars){
         Map<String, Long> countryCT = cars.stream()
                 .collect(Collectors.groupingBy(Car::getCountry, Collectors.counting()));
         return  countryCT;
