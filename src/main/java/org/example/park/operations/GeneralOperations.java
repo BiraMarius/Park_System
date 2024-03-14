@@ -11,23 +11,21 @@ import static org.example.park.operations.util.Constants.ROOT_PATH;
 
 
 public class GeneralOperations {
-    public static void serializare(List <Car> cars){
+    public static void serializare(ArrayList <Car> cars){
         closeSerialization(cars, ROOT_PATH + "\\" + FILE_NAME);
     }
 
-    public static List<Car> deserializare(){
-        return initDeserialization( ROOT_PATH + "\\" + FILE_NAME);
-        //cleanFile();
+    public static ArrayList<Car> deserializare(ArrayList<Car> cars){
+        return initDeserialization(cars, ROOT_PATH + "\\" + FILE_NAME);
     }
 
 
-    public static List<Car> initDeserialization( String fileName) {
+    public static ArrayList<Car> initDeserialization(ArrayList<Car> cars, String fileName) {
         try(FileInputStream inputStream = new FileInputStream(fileName);
-            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream );) {
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream )) {
              return  (ArrayList) objectInputStream.readObject();
         }catch (FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
-            // Handle this exception as needed, e.g., log or inform the user
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -35,11 +33,11 @@ public class GeneralOperations {
 //            objectInputStream.close();
 //            inputStream .close();
 //        }
-        return null;
+        return cars;
     }
 
 
-    private static void closeSerialization(List<Car> cars, String filename){
+    private static void closeSerialization(ArrayList<Car> cars, String filename){
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream((filename)))){
             out.writeObject(cars);
             System.out.println("Objects written to file successfully.");

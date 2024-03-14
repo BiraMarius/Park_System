@@ -2,8 +2,10 @@ package org.example;
 
 import org.example.park.Park;
 import org.example.park.operations.GeneralOperations;
+import org.example.park.operations.util.Constants;
 import org.example.park.operations.util.FileUtil;
 import org.example.park.report.Report;
+import org.example.park.report.ReportOperations;
 import org.example.park.report.ReportUtil;
 import org.example.park.vehicle.Car;
 
@@ -12,6 +14,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.example.park.operations.util.Constants.FILE_NAME;
+import static org.example.park.operations.util.Constants.FILE_NAME_Reports;
+import static org.example.park.report.ReportOperations.addCountry;
 
 public class Main2 {
     public static void main(String[] args) throws IOException {
@@ -59,9 +65,30 @@ public class Main2 {
 //                .collect(Collectors.toList());
 
         List<Car> cars = new ArrayList();
+        LinkedList<Report> reports = new LinkedList();
+//
+//        //cars = GeneralOperations.deserializare();
+//        reports = ReportUtil.deserializare(reports);
+//        reports.add(new Report("10.12.2020"));
         cars.add(new Car("b801yan"));
         cars.add(new Car("b802yaz"));
         cars.add(new Car("b803yah"));
+//
+//        ReportUtil.cleanFile(FILE_NAME_Reports);
+//        ReportUtil.cleanFile(FILE_NAME);
+//
+//        ReportOperations.completeReport(Park.getReports());
+//
+//        GeneralOperations.serializare(Park.getCars());
+//        ReportUtil.serializare(Park.getReports());
+        ReportOperations.addCountry(cars,"b", String.valueOf(Constants.Country.ROMANIA));
+        for(Car car : cars){
+            System.out.println(car.getRegistationNo() + " is from: "+ car.getCountry());
+        }
+//        Car car = new Car("B800YAM");
+//        car.setCountry(Constants.Country.ROMANIA.toString());
+//        System.out.println(car.getRegistationNo() + " din tara "+ car.getCountry());
+
 
     }
 }

@@ -7,14 +7,15 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+//import static java.util.stream.Nodes.collect;
 import static org.example.park.operations.util.Constants.FILE_NAME;
 import static org.example.park.operations.util.Constants.ROOT_PATH;
 
-public class ReportOperations implements IReportOperations {
+public class ReportOperations{
     public static Report searchReportByDate(List<Report> reports, String date){
             for(int i=0; i<reports.size(); i++){
                 if(reports.get(i).getDate().equals(date)){
@@ -94,13 +95,27 @@ public class ReportOperations implements IReportOperations {
         }
     }
 
-    public static Report reportFCars(List<Car> cars){
+    public static void reportFCars(List<Car> cars){
 
     }
 
-    private static List<Car> carsCountry(){
-        List<Car> carsCList = new ArrayList();
+    private static void reportFCTemplate(Map<String, Long> countryCT){
+        List<String> countryCarCT = countryCT.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue() )
+                        .collect(Collectors.toList());
+//        System.out.println("________________________________\n" +
+//                           " Report of foreign country cars \n" +
+//                           for (String s : countryCarCT) +
+//                           "_______________________________\n")
+        countryCarCT.forEach(System.out::println);
+    }
 
+
+
+    private static Map<String, Long> carsCountry(ArrayList<Car> cars){
+        Map<String, Long> countryCT = cars.stream()
+                .collect(Collectors.groupingBy(Car::getCountry, Collectors.counting()));
+        return  countryCT;
     }
 
     public static void FCarsNow(List<Car> cars, Car car){
@@ -110,9 +125,21 @@ public class ReportOperations implements IReportOperations {
         }
     }
 
-    public static void addCountry(List<Car> cars, String string, String country){
-        cars.stream().filter(c -> c.getRegistationNo().startsWith(string)).map(c -> { c.setCountry(country);return c.getRegistationNo() + " Is from: "+c.getCountry();});
+    public static List<Car> addCountry(List<Car> cars, String startWithThisString, String country){
+        return cars.stream()
+                .filter(c -> c.getRegistationNo().startsWith(startWithThisString))
+                .peek(car -> car.setCountry(country))
+                .collect(Collectors.toList());
     }
+
+//    generare raport doar cu masini cu nr straine       stream java 8 filter
+//
+//    filtrarea masinilor care au stat minim 3 ore in parcare
+//
+//    suma masini suma bani
+//
+//    xxxxx adaugarea unui nou camp de nationalitate in Car
+//    atunci cand parcurg lista cu stream adaug in campul respectiv tara de provenienta operatiue map
 
 
 

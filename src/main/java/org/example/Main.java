@@ -10,6 +10,9 @@ import org.example.park.report.ReportOperations;
 import org.example.park.report.ReportUtil;
 import org.example.park.vehicle.Car;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.example.park.operations.util.Constants.FILE_NAME;
@@ -22,13 +25,9 @@ public class Main {
     //private static Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
         Park baneasaP = new Park();
-        Park.setReports(ReportUtil.deserializare());
-        Park.setCars(GeneralOperations.deserializare());
-        ReportUtil.cleanFile(FILE_NAME_Reports);
-        ReportUtil.cleanFile(FILE_NAME);
+        Park.setCars(GeneralOperations.deserializare(Park.getCars()));
+        Park.setReports(ReportUtil.deserializare(Park.getReports()));
         ReportOperations.completeReport(Park.getReports());
-
-
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
         String carRN;
@@ -79,9 +78,11 @@ public class Main {
                     GeneralOperations.serializare(Park.getCars());
 
                 case 7: // Get state of parking from file
-                    Park.setCars(GeneralOperations.deserializare());
+                    Park.setCars(GeneralOperations.deserializare(Park.getCars()));
 
                 case 8: // Closing app option
+                    ReportUtil.cleanFile(FILE_NAME_Reports);
+                    ReportUtil.cleanFile(FILE_NAME);
                     System.out.println("Shuting down.");
                     GeneralOperations.serializare(Park.getCars());
                     ReportUtil.serializare(Park.getReports());

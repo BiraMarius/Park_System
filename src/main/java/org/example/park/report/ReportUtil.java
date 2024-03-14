@@ -11,20 +11,20 @@ public class ReportUtil {
         closeSerialization(reports, ROOT_PATH + "\\" + FILE_NAME_Reports);
     }
 
-    public static LinkedList<Report> deserializare() {
-        return initDeserialization(ROOT_PATH + "\\" + FILE_NAME_Reports);
+    public static LinkedList<Report> deserializare(LinkedList<Report> reports) {
+        return initDeserialization(reports,ROOT_PATH + "\\" + FILE_NAME_Reports);
     }
 
-    public static LinkedList initDeserialization(String fileName) {
+    public static LinkedList initDeserialization(LinkedList<Report> reports, String fileName) {
         try (FileInputStream inputStream = new FileInputStream(fileName);
-             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);) {
+             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
             return (LinkedList) objectInputStream.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return reports;
     }
 
 
