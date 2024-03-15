@@ -27,6 +27,11 @@ public abstract class Vehiclee implements Serializable {
         this.parkingTime = parkingTime;
     }
 
+    public Vehiclee(String registationNo, String country) {
+        this.registationNo = registationNo;
+        this.country = country;
+    }
+
     public abstract void park();
 
     public static int getCounter() {

@@ -12,6 +12,10 @@ public class Car extends Vehiclee {
         super(registationNo, parkingTime);
     }
 
+    public Car(String registationNo, String country) {
+        super(registationNo, country);
+    }
+
     @Override
     public void park(){
         System.out.println("##################  TICKET  #####################\n" +

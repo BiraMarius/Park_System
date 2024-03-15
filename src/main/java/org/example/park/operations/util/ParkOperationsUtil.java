@@ -4,6 +4,8 @@ import org.example.park.vehicle.Car;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,11 +95,13 @@ public class ParkOperationsUtil extends Object{
     }
 
 
-    public static List<Car> cars3h(ArrayList<Car> cars, Duration duration){
-        LocalDateTime timeNow = LocalDateTime.now();
+    public static List<Car> cars3h(ArrayList<Car> cars){
         return cars.stream()
-                .filter(car -> Duration.between(car.getParkingTime(), timeNow).compareTo(duration) >= 0)
+                .filter(car -> ChronoUnit.HOURS.between(car.getParkingTime(), LocalDateTime.now()) > 3)
                 .collect(Collectors.toList());
     }
+
+
+
 
 }

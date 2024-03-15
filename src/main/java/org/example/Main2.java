@@ -92,18 +92,21 @@ public class Main2 {
         for(Car car : cars){
             System.out.println(car.getRegistationNo() + " is from: "+ car.getCountry());
         }
-        reportFCTemplate(carsCountry(cars));
-
-        LocalDateTime now= LocalDateTime.now();
-        cars.add(new Car("s801yan", now.minusHours(4)));
-        cars.add(new Car("s802yaz", now.minusHours(4)));
-        List<Car> carsParkedMoreThan = cars3h(cars, Duration.ofHours(3));
-        for (Car car : carsParkedMoreThan) {
-            System.out.println("Car: " + car.getRegistationNo() + ", Arrival Time: " + car.getParkingTime());
-        }
+//        reportFCTemplate(carsCountry(cars));
+//
+//        LocalDateTime now= LocalDateTime.now();
+//        cars.add(new Car("s801yan", now.minusHours(4)));
+//        cars.add(new Car("s802yaz", now.minusHours(2)));
+//        List<Car> carsParkedMoreThan = cars3h(cars);
+//
+//        for (Car car : carsParkedMoreThan) {
+//            System.out.println("Car: " + car.getRegistationNo() + ", Arrival Time: " + car.getParkingTime());
+//        }
 
 
     }
+
+
 }
 
 //TODO > Try with resources read!

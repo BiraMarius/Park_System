@@ -9,11 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 //import static java.util.stream.Nodes.collect;
-import static org.example.park.operations.util.Constants.FILE_NAME;
-import static org.example.park.operations.util.Constants.ROOT_PATH;
+
 
 public class ReportOperations{
     public static Report searchReportByDate(List<Report> reports, String date){
@@ -95,10 +93,6 @@ public class ReportOperations{
         }
     }
 
-    public static void reportFCars(List<Car> cars){
-
-    }
-
     public static void reportFCTemplate(Map<String, Long> countryCT){
         List<String> countryCarCT = countryCT.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue() )
@@ -118,18 +112,19 @@ public class ReportOperations{
         return  countryCT;
     }
 
-    public static void FCarsNow(List<Car> cars, Car car){
-        List<Car> fCarsList = (List<Car>) cars.stream().filter(fcars -> car.getCountry().equalsIgnoreCase("romania"));
-        for(Car car2 : fCarsList){
-            System.out.println("nr de inmatriculare");
-        }
+    public static void fCarsNow(List<Car> cars, Car car){
+        List<Car> fCarsList =  cars.stream()
+                .filter(fcars -> !car.getCountry().equalsIgnoreCase("romania"))
+                .collect(Collectors.toList());
     }
 
     public static List<Car> addCountry(List<Car> cars, String startWithThisString, String country){
         return cars.stream()
                 .filter(c -> c.getRegistationNo().startsWith(startWithThisString))
-                .peek(car -> car.setCountry(country))
+                .map(c -> c=new Car(c.getRegistationNo(), country))
+                //.peek(car -> System.out.println())
                 .collect(Collectors.toList());
+
     }
 
 //    generare raport doar cu masini cu nr straine       stream java 8 filter
