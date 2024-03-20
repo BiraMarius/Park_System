@@ -52,3 +52,45 @@ https://www.tutorialspoint.com/java/java-lambda-expressions.htm
 https://www.appsdeveloperblog.com/serialize-and-deserialize-an-arraylist-in-java/
 https://crunchify.com/how-to-serialize-deserialize-list-of-objects-in-java-java-serialization-example/
 
+
+MED 6
+W3 SmartSolutions
+18:28
+import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        // Converting LocalDateTime to Temporal (in this case, just using LocalDateTime itself)
+        Temporal temporal = localDateTime;
+
+        // If you need to operate with Temporal methods, you might want to cast it back
+        LocalDateTime convertedBack = LocalDateTime.from(tempo
+W3 SmartSolutions
+18:31
+long hours = ChronoUnit.HOURS.between(fromDate, toDate);
+W3 SmartSolutions
+18:47
+people.stream()
+              .peek(p -> System.out.println("Nume: " + p.getName() + ", Vârsta inițială: " + p.getAge()))
+              .map(p -> new Person(p.getName(), p.getAge() * 2))
+              .forEach(p -> System.out.println("Nume: " + p.getName() + ", Vârsta dublată: " + p.getAge()));
+    }
+W3 SmartSolutions
+19:36
+https://www.youtube.com/@laurspilca
+W3 SmartSolutions
+19:40
+https://www.baeldung.com/spring-component-repository-service
+W3 SmartSolutions
+19:51
+https://spring.io/guides/gs/spring-boot
+https://www.javatpoint.com/spring-boot-tutorial
+W3 SmartSolutions
+19:55
+https://www.baeldung.com/spring-tutorial
+
+//transform this app into an web app
+
