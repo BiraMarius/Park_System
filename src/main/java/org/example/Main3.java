@@ -22,6 +22,7 @@ public class Main3 {
                 .collect(Collectors.toList());
 
         for(Car car : cars2){
+            System.out.println("Masina cu numar strain");
             System.out.println(car.getRegistationNo() + " is from: "+ car.getCountry());
         }
     }
