@@ -3,6 +3,7 @@ package org.example.park.report;
 import java.io.Serializable;
 
 public class Report implements Serializable {
+    //Serializable is used for writing and reading from file
     private static int id;
     private String date;
     private int carsIn;
