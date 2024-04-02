@@ -10,6 +10,7 @@ public class Report implements Serializable {
     private int carsOut;
     private int carsLeft;
     private static long income;
+    //private boolean generated;
 
     public Report(String date) {
         this.date = date;
