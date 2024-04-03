@@ -62,6 +62,7 @@ public class ParkOperationsUtil extends Object{
     }
      */
 
+    //Shorthanded IF
     private static Car validateAndGetNumber(String registrationNo, Car car) {
         return (car.getRegistationNo() != null && car.getRegistationNo().equalsIgnoreCase(registrationNo))
                 ? car
